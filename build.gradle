@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:recyclerview-v7:$ANDROID_BUILD_SUPPORT_VERSION"
+            force "com.android.support:appcompat-v7:$ANDROID_BUILD_SUPPORT_VERSION"
+            force "com.android.support:design:$ANDROID_BUILD_SUPPORT_VERSION"
+            force "com.android.support:support-vector-drawable:$ANDROID_BUILD_SUPPORT_VERSION"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
