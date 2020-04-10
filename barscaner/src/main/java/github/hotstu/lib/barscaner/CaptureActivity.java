@@ -35,15 +35,14 @@ import android.widget.TextView;
 
 import com.google.zxing.Result;
 import com.google.zxing.ResultMetadataType;
-import github.hotstu.lib.barscaner.R;
-
-import github.hotstu.lib.barscaner.camera.CameraManager;
-import github.hotstu.lib.barscaner.result.ResultHandler;
-import github.hotstu.lib.barscaner.result.ResultHandlerFactory;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.EnumSet;
+
+import github.hotstu.lib.barscaner.camera.CameraManager;
+import github.hotstu.lib.barscaner.result.ResultHandler;
+import github.hotstu.lib.barscaner.result.ResultHandlerFactory;
 
 /**
  * This activity opens the camera and does the actual scanning on a background thread. It draws a
@@ -127,7 +126,6 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
         cameraManager = new CameraManager(getApplication());
 
         viewfinderView = findViewById(R.id.viewfinder_view);
-        viewfinderView.setCameraManager(cameraManager);
 
         statusView = findViewById(R.id.status_view);
 

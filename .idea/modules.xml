@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/2020-barscan.iml" filepath="$PROJECT_DIR$/2020-barscan.iml" group="barscan" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/barscan.iml" filepath="$PROJECT_DIR$/barscan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/barscan-app.iml" filepath="$PROJECT_DIR$/app/barscan-app.iml" group="barscan/app" />
+      <module fileurl="file://$PROJECT_DIR$/barscaner/barscan-barscaner.iml" filepath="$PROJECT_DIR$/barscaner/barscan-barscaner.iml" group="barscan/barscaner" />
       <module fileurl="file://$PROJECT_DIR$/barscaner/barscaner.iml" filepath="$PROJECT_DIR$/barscaner/barscaner.iml" />
     </modules>
   </component>

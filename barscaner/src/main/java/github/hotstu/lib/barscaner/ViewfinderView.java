@@ -17,7 +17,6 @@
 package github.hotstu.lib.barscaner;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -28,9 +27,6 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.google.zxing.ResultPoint;
-import github.hotstu.lib.barscaner.R;
-
-import github.hotstu.lib.barscaner.camera.CameraManager;
 
 /**
  * This view is overlaid on top of the camera preview. It adds the viewfinder rectangle and partial
@@ -47,7 +43,6 @@ public final class ViewfinderView extends View {
     private static final int MAX_FRAME_WIDTH = 1200; // = 5/8 * 1920
     private static final int MAX_FRAME_HEIGHT = 675; // = 5/8 * 1080
 
-    private CameraManager cameraManager;
     private final Paint paint;
     private final int maskColor;
     private final int laserColor;
@@ -85,18 +80,12 @@ public final class ViewfinderView extends View {
         super.onDetachedFromWindow();
     }
 
-    public void setCameraManager(CameraManager cameraManager) {
-        this.cameraManager = cameraManager;
-    }
 
-    @SuppressLint("DrawAllocation")
+
     @Override
     public void onDraw(Canvas canvas) {
-        if (cameraManager == null) {
-            return; // not ready yet, early draw before done configuring
-        }
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        int height = getHeight();
 
         int SqureWidth = findDesiredDimensionInRange(width, MIN_FRAME_WIDTH, MAX_FRAME_WIDTH);
         int SqureHeight = findDesiredDimensionInRange(height, MIN_FRAME_HEIGHT, MAX_FRAME_HEIGHT);
@@ -109,22 +98,6 @@ public final class ViewfinderView extends View {
         canvas.drawRect(0, topOffset, leftOffset, topOffset + SqureHeight + 1, paint);
         canvas.drawRect(leftOffset + SqureWidth + 1, topOffset, width, topOffset + SqureHeight + 1, paint);
         canvas.drawRect(0, topOffset + SqureHeight + 1, width, height, paint);
-//        Rect framingRect = cameraManager.getFramingRect();
-//        Paint.Style style = paint.getStyle();
-//        if (framingRect != null) {
-//            paint.setStyle(Paint.Style.STROKE);
-//            canvas.drawRect(framingRect, paint);
-//        }
-//        Rect pframingRect = cameraManager.getFramingRectInPreview();
-//        if (pframingRect != null) {
-//            paint.setColor(Color.WHITE);
-//            paint.setStyle(Paint.Style.STROKE);
-//            canvas.drawRect(pframingRect, paint);
-//        }
-//
-//        paint.setStyle(style);
-
-        // Draw a red "laser scanner" line through the middle to show decoding is active
         paint.setColor(laserColor);
         paint.setAlpha(SCANNER_ALPHA[scannerAlpha]);
         scannerAlpha = (scannerAlpha + 1) % SCANNER_ALPHA.length;
@@ -149,7 +122,7 @@ public final class ViewfinderView extends View {
     }
 
     public void drawViewfinder() {
-        invalidate();
+        postInvalidate();
     }
 
 
